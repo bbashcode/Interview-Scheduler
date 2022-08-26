@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
 import "index.scss";
 
 import Button from "components/Button";
@@ -144,10 +145,16 @@ storiesOf("Appointment", module)
     .add("Appointment with Time", () => <Appointment time="12pm" />);
 
 
-storiesOf("Appointment", module)
+storiesOf("Header", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-    .add("Appointment", () => <Appointment />)
+    .add("Appointment", () => <Header />)
     .add("Appointment with Time", () => <Appointment time={"12pm"} />)
     .add("Header", () => <Header time="12pm" />);
+
+storiesOf("Empty", module)
+.addParameters({
+  backgrounds: [{ name: "add", value: "#fff", default: true }]
+})
+  .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
