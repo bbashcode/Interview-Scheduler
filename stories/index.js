@@ -113,7 +113,7 @@ storiesOf("InterviewerListItem", module)
     { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
   ];
   
-  storiesOf("InterviewerList", module)
+storiesOf("InterviewerList", module)
     .addParameters({
       backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
     })
@@ -135,3 +135,10 @@ storiesOf("InterviewerListItem", module)
         setInterviewer={() => action("setInterviewer")(interviewer.id)}
       />
     ));
+
+storiesOf("Appointment", module)
+  .addParameters({
+      backgrounds: [{ name: "white", value: "#fff", default: true }]
+    })
+    .add("Appointment", (prop) => <Appointment />)
+    .add("Appointment with Time", () => <Appointment time="12pm" />);
