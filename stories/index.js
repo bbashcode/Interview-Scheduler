@@ -9,6 +9,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
 import "index.scss";
 
 import Button from "components/Button";
@@ -146,7 +147,9 @@ storiesOf("Appointment", module)
       backgrounds: [{ name: "white", value: "#fff", default: true }]
     })
   .add("Appointment", (prop) => <Appointment />)
-  .add("Appointment with Time", () => <Appointment time="12pm" />);
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
+  .add("Create", () => <Form interviewers={interviewers} onSave={action("onSave")} onCancel={action("onCancel")} />)
+  .add("Edit", () => <Form student="J. Stamos" interviewer={2} interviewers={interviewers} onSave={action("onSave")} onCancel={action("onCancel")} />);
 
 
 storiesOf("Header", module)
@@ -161,7 +164,7 @@ storiesOf("Empty", module)
 .addParameters({
   backgrounds: [{ name: "add", value: "#fff", default: true }]
 })
-.add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+.add("Empty", () => <Empty onAdd={action("onAdd")}/>);
 
 storiesOf("Show", module)
 .addParameters({
@@ -170,7 +173,7 @@ storiesOf("Show", module)
 .add("Show", () => <Show student={"Lydia Miller-Jones"}/>)
 .add("Show", () => <Show interviewer={interviewer.name}/>)
 .add("Show", () => <Show onEdit={action("onEdit")}/>)
-.add("Show", () => <Show onDelete={action("onDelete")}/>)
+.add("Show", () => <Show onDelete={action("onDelete")}/>);
 
 storiesOf("Confirm", module)
   .addParameters({
@@ -178,18 +181,18 @@ storiesOf("Confirm", module)
   })
   .add("Confirm", () => <Confirm message={"Delete the appointment?"}/>)
   .add("Confirm", () => <Confirm onConfirm={action("onConfirm")}/>)
-  .add("Confirm", () => <Confirm onCancel={action("onCancel")}/>)
+  .add("Confirm", () => <Confirm onCancel={action("onCancel")}/>);
 
 
 storiesOf("Status", module)
   .addParameters({
     backgrounds: [{ name: "add", value: "#fff", default: true }]
   })
-  .add("Status", () => <Status message={"Deleting"}/>)
+  .add("Status", () => <Status message={"Deleting"}/>);
 
 storiesOf("Error", module)
   .addParameters({
     backgrounds: [{ name: "add", value: "#fff", default: true }]
   })
   .add("Error", () => <Error message={"Could not delete appointment."}/>)
-  .add("Error", () => <Error onClose={action("onClose")}/>)
+  .add("Error", () => <Error onClose={action("onClose")}/>);
