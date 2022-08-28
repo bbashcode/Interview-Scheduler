@@ -178,3 +178,10 @@ storiesOf("Confirm", module)
   .add("Confirm", () => <Confirm message={"Delete the appointment?"}/>)
   .add("Confirm", () => <Confirm onConfirm={action("onConfirm")}/>)
   .add("Confirm", () => <Confirm onCancel={action("onCancel")}/>)
+
+
+storiesOf("Status", module)
+  .addParameters({
+    backgrounds: [{ name: "add", value: "#fff", default: true }]
+  })
+  .add("Status", () => <Status message={"Deleting"}/>)
