@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Show = () => {
+const Show = (props) => {
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
@@ -16,11 +16,13 @@ const Show = () => {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
+            onClick={props.onEdit}
           />
           <img
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
+            onClick={props.onDelete}
           />
         </section>
       </section>

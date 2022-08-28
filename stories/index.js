@@ -159,3 +159,12 @@ storiesOf("Empty", module)
   backgrounds: [{ name: "add", value: "#fff", default: true }]
 })
   .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+
+storiesOf("Show", module)
+.addParameters({
+  backgrounds: [{ name: "add", value: "#fff", default: true }]
+})
+  .add("Show", () => <Show student={"Lydia Miller-Jones"}/>)
+  .add("Show", () => <Show interviewer={interviewer.name}/>)
+  .add("Show", () => <Show onEdit={action("onEdit")}/>)
+  .add("Show", () => <Show onDelete={action("onDelete")}/>)
