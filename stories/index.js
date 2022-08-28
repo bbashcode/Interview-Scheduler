@@ -169,3 +169,11 @@ storiesOf("Show", module)
   .add("Show", () => <Show interviewer={interviewer.name}/>)
   .add("Show", () => <Show onEdit={action("onEdit")}/>)
   .add("Show", () => <Show onDelete={action("onDelete")}/>)
+
+storiesOf("Confirm", module)
+  .addParameters({
+    backgrounds: [{ name: "add", value: "#fff", default: true }]
+  })
+    .add("Confirm", () => <Show message={"Delete the appointment?"}/>)
+    .add("Confirm", () => <Show onConfirm={action("onConfirm")}/>)
+    .add("Confirm", () => <Show onCancel={action("onCancel")}/>)
