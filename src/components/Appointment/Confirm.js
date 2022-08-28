@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-no-undef */
 import React from 'react';
+import Button from 'components/Button';
 
 const Confirm = () => {
   return (
