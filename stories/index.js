@@ -186,3 +186,10 @@ storiesOf("Status", module)
     backgrounds: [{ name: "add", value: "#fff", default: true }]
   })
   .add("Status", () => <Status message={"Deleting"}/>)
+
+storiesOf("Error", module)
+  .addParameters({
+    backgrounds: [{ name: "add", value: "#fff", default: true }]
+  })
+  .add("Error", () => <Error message={"Could not delete appointment."}/>)
+  .add("Error", () => <Error onClose={action("onClose")}/>)
