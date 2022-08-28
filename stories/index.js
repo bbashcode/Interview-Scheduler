@@ -7,6 +7,7 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
 import "index.scss";
 
 import Button from "components/Button";
@@ -143,37 +144,37 @@ storiesOf("Appointment", module)
   .addParameters({
       backgrounds: [{ name: "white", value: "#fff", default: true }]
     })
-    .add("Appointment", (prop) => <Appointment />)
-    .add("Appointment with Time", () => <Appointment time="12pm" />);
+  .add("Appointment", (prop) => <Appointment />)
+  .add("Appointment with Time", () => <Appointment time="12pm" />);
 
 
 storiesOf("Header", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-    .add("Appointment", () => <Header />)
-    .add("Appointment with Time", () => <Appointment time={"12pm"} />)
-    .add("Header", () => <Header time="12pm" />);
+  .add("Appointment", () => <Header />)
+  .add("Appointment with Time", () => <Appointment time={"12pm"} />)
+  .add("Header", () => <Header time="12pm" />);
 
 storiesOf("Empty", module)
 .addParameters({
   backgrounds: [{ name: "add", value: "#fff", default: true }]
 })
-  .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+.add("Empty", () => <Empty onAdd={action("onAdd")}/>)
 
 storiesOf("Show", module)
 .addParameters({
   backgrounds: [{ name: "add", value: "#fff", default: true }]
 })
-  .add("Show", () => <Show student={"Lydia Miller-Jones"}/>)
-  .add("Show", () => <Show interviewer={interviewer.name}/>)
-  .add("Show", () => <Show onEdit={action("onEdit")}/>)
-  .add("Show", () => <Show onDelete={action("onDelete")}/>)
+.add("Show", () => <Show student={"Lydia Miller-Jones"}/>)
+.add("Show", () => <Show interviewer={interviewer.name}/>)
+.add("Show", () => <Show onEdit={action("onEdit")}/>)
+.add("Show", () => <Show onDelete={action("onDelete")}/>)
 
 storiesOf("Confirm", module)
   .addParameters({
     backgrounds: [{ name: "add", value: "#fff", default: true }]
   })
-    .add("Confirm", () => <Show message={"Delete the appointment?"}/>)
-    .add("Confirm", () => <Show onConfirm={action("onConfirm")}/>)
-    .add("Confirm", () => <Show onCancel={action("onCancel")}/>)
+  .add("Confirm", () => <Confirm message={"Delete the appointment?"}/>)
+  .add("Confirm", () => <Confirm onConfirm={action("onConfirm")}/>)
+  .add("Confirm", () => <Confirm onCancel={action("onCancel")}/>)
