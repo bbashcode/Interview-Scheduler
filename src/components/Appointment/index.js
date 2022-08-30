@@ -9,7 +9,7 @@ const Appointment = (props) => {
     <>
       <Header time={props.time} />
       <article className="appointment"></article>
-      {(props.interview)?<Show /> : <Empty />}
+      {(props.interview) ? <Show /> : <Empty />}
     </>
   );
 };
