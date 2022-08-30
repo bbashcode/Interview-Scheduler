@@ -51,7 +51,10 @@ export default function Application(props) {
       <section className="schedule">
         {Object.values(props.appointments).map((appointment)=> {
           return (
-            <Appointment />
+            <Appointment
+              key={appointment.id} 
+              {...appointment} 
+            />
           )
         }) 
         }
