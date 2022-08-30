@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
+import Appointment from 'components/Appointment';
 
 //Mock data for DayList component
 const days = [
