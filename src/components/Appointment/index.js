@@ -6,7 +6,11 @@ import Empty from './Empty';
 
 const Appointment = (props) => { 
   return(
-    <article className="appointment"></article>
+    <>
+      <Header time={props.time} />
+      <article className="appointment"></article>
+      {(props.interview)?<Show /> : <Empty />}
+    </>
   );
 };
 
