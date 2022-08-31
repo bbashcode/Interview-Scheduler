@@ -33,6 +33,11 @@ const state = {
       "id": 1,
       "name": "Sylvia Palmer",
       "avatar": "https://i.imgur.com/LpaY82x.png"
+    },
+    "2": {
+      "id": 2,
+      "name": "J. Stamos",
+      "avatar": "https://i.imgur.com/LpaY82x.png"
     }
   }
 };
