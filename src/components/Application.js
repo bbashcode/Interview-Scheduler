@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from 'components/Appointment';
-
+import axios from 'axios';
 //Mock data for DayList component
 const days = [
   {
