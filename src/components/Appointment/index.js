@@ -5,6 +5,9 @@ import Show from './Show';
 import Empty from './Empty';
 import useVisualMode from 'hooks/useVisualMode';
 
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+
 const Appointment = (props) => { 
   return(
     <>
