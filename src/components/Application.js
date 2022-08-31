@@ -57,7 +57,7 @@ export default function Application(props) {
   });
 
   const dailyAppointments = [];
-  
+
   const setDay = day => setState({ ...state, day });
   const setDays = days => setState(prev => ({...prev, days}));
 
@@ -88,7 +88,7 @@ export default function Application(props) {
       />
       </section>
       <section className="schedule">
-        {Object.values(appointments).map((appointment)=> {
+        {dailyAppointments.map((appointment)=> {
           return (
             <Appointment
               key={appointment.id} 
