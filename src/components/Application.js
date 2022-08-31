@@ -61,7 +61,16 @@ export default function Application(props) {
   const setDay = day => setState({ ...state, day });
 
   useEffect =(()=>{
-    axios.get('http://localhost:8001/api/days' ).then(({response})=> );
+    Promise.all([
+      axios.get('/api/days'),
+      axios.get('/api/appointments')
+    ]).then((all) => {
+        setState(prev => ({
+          ...prev,
+          days: all[0].data,
+          appointments: all[1].data,
+        }))
+    })
   },[]);
 
   return (
