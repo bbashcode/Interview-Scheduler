@@ -20,8 +20,8 @@ export default function Application(props) {
 
   useEffect =(()=>{
     Promise.all([
-      axios.get('/api/days'),
-      axios.get('/api/appointments')
+      axios.get('http://localhost:8001/api/days'),
+      axios.get('http://localhost:8001/api/appointments')
     ]).then((all) => {
         setState(prev => ({
           ...prev,
