@@ -31,11 +31,13 @@ const Appointment = (props) => {
       student: name,
       interviewer
     };
+  
     transition(SAVING);
-    
-    bookInterview(id, interview)
+  
+    props
+      .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE))
+      .catch(error => transition(ERROR_SAVE, true));
   }
 
   function cancel () {
