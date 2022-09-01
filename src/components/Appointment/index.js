@@ -15,6 +15,14 @@ const { mode, transition, back } = useVisualMode(
 
 
 const Appointment = (props) => { 
+  
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+  }
+
   return(
     <>
       <article className="appointment">
