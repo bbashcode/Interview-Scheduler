@@ -1,67 +1,18 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from "react";
+import React, { useEffect } from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from 'components/Appointment';
 import axios from 'axios';
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors';
+import useApplicationData from "hooks/useApplicationData";
 
 
 export default function Application(props) {
-
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {}
-  });
-
+  const { state, setState, bookInterview, cancelInterview, setDay } = useApplicationData();
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const interviewers = getInterviewersForDay(state, state.day);
-
-  function bookInterview(id, interview) {
-    console.log(id, interview);
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    
-    setState({...state, appointments});
-
-    return axios
-    .put(`/api/appointments/${id}`, appointment)
-    .then((res) => {
-      if (res.status === 204) {
-        setState((prev) => ({ ...prev, appointments }));
-      }
-    })
-    .catch(err => console.log(err))
-  }
-
-  function cancelInterview(id){
-    const appointment = {
-      ...state.appointments[id],
-      interview: null,
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    return axios
-      .delete(`/api/appointments/${id}`, appointment)
-      .then((res) => {
-        if (res.status === 204) {
-          setState((prev) => ({ ...prev, appointments }));
-        }
-      })
-      .catch(err => console.log(err))
-  };
   
   const schedule = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview)
@@ -76,8 +27,6 @@ export default function Application(props) {
       />
     );
   });
-
-  const setDay = day => setState({ ...state, day });
 
   useEffect =(()=>{
     Promise.all([
