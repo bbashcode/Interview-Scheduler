@@ -40,13 +40,26 @@ export default function useApplicationData() {
     const appointments = {
       ...state.appointments,
       [id]: appointment,
-    };
+  };
+    
+  function getUpdatedDays(appointments){
+    const newDays = [...state.days];
 
+    newDays.map((stateDay) => {
+      const day = { ...stateDay };
+      const spots = day.appointments.filter(
+        (id) => !appointments[id].interview
+      ).length;
+
+      day.spots = spots;
+      return day;
+    });
+  };
     return axios
       .delete(`/api/appointments/${id}`, appointment)
       .then((res) => {
         if (res.status === 204) {
-          setState((prev) => ({ ...prev, appointments }));
+          setState((prev) => ({ ...prev, appointments, days: getUpdatedDays }));
         }
       })
       .catch(err => console.log(err))
