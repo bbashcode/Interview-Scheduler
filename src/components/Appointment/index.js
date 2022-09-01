@@ -32,9 +32,10 @@ const Appointment = (props) => {
       interviewer
     };
     transition(SAVING);
-    props.bookInterview(props.id, interview)
-    .then(()=>transition(SHOW))
-    ;
+    
+    bookInterview(id, interview)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE))
   }
 
   function cancel () {
