@@ -21,6 +21,7 @@ const Appointment = (props) => {
       student: name,
       interviewer
     };
+    transition(SHOW);
   }
 
   return(
@@ -35,7 +36,7 @@ const Appointment = (props) => {
           interviewer={props.interview.interviewer}
         />
       )}
-      {mode === CREATE && <Form onCancel={() => back()} interviewers={[]} save={save}/>}
+      {mode === CREATE && <Form onCancel={() => back()} interviewers={props.interviewers} onSave={save}/>}
     </>
   );
 };
