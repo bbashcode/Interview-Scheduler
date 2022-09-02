@@ -22,7 +22,9 @@ const Form = (props) => {
       setError("Student name cannot be blank");
       return;
     }
-    
+
+    setError("");
+
     if (interviewer === null) {
       setError("Please select an interviewer");
       return;
@@ -30,7 +32,6 @@ const Form = (props) => {
   
     props.onSave(student, interviewer);
   }
-
 
   return (
     <main className="appointment__card appointment__card--create">
