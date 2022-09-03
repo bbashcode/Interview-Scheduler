@@ -136,7 +136,7 @@ describe("Application", () => {
   });
 
   /* test number five */
-  it("shows the save error when failing to save an appointment", () => {
+  it("shows the save error when failing to save an appointment", async() => {
     axios
     .put
     .mockRejectedValueOnce();
@@ -157,7 +157,7 @@ describe("Application", () => {
     expect(getByDisplayValue(appointment, "Archie Cohen")).toBeInTheDocument();
   });
 
-  it("sshows the delete error when failing to delete an existing appointment", () => {
+  it("sshows the delete error when failing to delete an existing appointment", async () => {
     axios
     .put
     .mockRejectedValueOnce();
