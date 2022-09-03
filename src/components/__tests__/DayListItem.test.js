@@ -11,11 +11,6 @@ it("renders without crashing", () => {
 });
 
 it("renders 'no spots remaining' when there are 0 spots", () => {
-  const day = getAllByTestId(container, "day").find(day =>
-    queryByText(day, "Monday")
-  );
-  
-  console.log(prettyDOM(day));
   const { getByText } = render(<DayListItem name="Monday" spots={0} />);
   expect(getByText("no spots remaining")).toBeInTheDocument();
 });
