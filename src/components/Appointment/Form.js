@@ -19,7 +19,7 @@ const Form = (props) => {
   };
 
   function save() {
-    if (student === "") {
+    if (student.trim() === "") {
       setError("Student name cannot be blank");
       return;
     }
