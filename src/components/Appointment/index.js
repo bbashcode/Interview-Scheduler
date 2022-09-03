@@ -19,13 +19,13 @@ const EDIT = "EDIT";
 const ERROR_SAVE = 'ERROR_SAVE'
 const ERROR_DELETE = 'ERROR_DELETE'
 
-const { mode, transition, back } = useVisualMode(
-  props.interview ? SHOW : EMPTY
-);
-
 
 const Appointment = (props) => { 
   
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -40,7 +40,7 @@ const Appointment = (props) => {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
-  function cancel () {
+  function deleteInterview () {
     transition(DELETING, true);
     props
      .cancelInterview(props.id)
@@ -58,22 +58,28 @@ const Appointment = (props) => {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onEdit={transition(EDIT)}
+          onDelete={transition(CONFIRM)}
         />
       )}
       {mode === CREATE && <Form onCancel={() => back(EMPTY)} interviewers={props.interviewers} onSave={save}/>}
-      {mode === SAVING && <Status message={"Saving..."}/>}
+      {mode === SAVING && <Status message="Saving..."/>}
+      {mode === ERROR_SAVE && (<Error message="Could not save appointment" onClose={back}/>)}
+      {mode === DELETING && (<Status message="Deleting" />)}
       {mode === CONFIRM && (
         <Confirm
-          onCancel={() => back()}
-          onConfirm={cancel}
+          onCancel={() => transition(SHOW)}
+          onConfirm={deleteInterview}
           message={"Are you sure you would like to delete?"}
         />
       )}
+      {mode === ERROR_DELETE && (
+          <Error message="Sorry, could not delete!" onClose={back}/>)}
       {mode === EDIT && (
         <Form
-          interviewers={props.interview.interviewers}
+          interviewers={props.interviewers}
           onSave={save}
-          onCancel={back}
+          onCancel={() => transition(SHOW)}
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
         />
