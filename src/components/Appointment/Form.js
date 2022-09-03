@@ -3,18 +3,19 @@ import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
 const Form = (props) => {
+  const{interviewers, onSave, onCancel } = props;
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
-  const reset = function () {
+  function reset() {
     setStudent("");
     setInterviewer(null);
   };
 
-  const cancel = function () {
+ function cancel() {
     reset();
-    props.onCancel();
+    onCancel();
   };
 
   function save() {
@@ -23,20 +24,18 @@ const Form = (props) => {
       return;
     }
 
-    setError("");
-
     if (interviewer === null) {
       setError("Please select an interviewer");
       return;
     }
-  
-    props.onSave(student, interviewer);
+    setError("");
+    onSave(student, interviewer);
   }
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+        <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -49,9 +48,9 @@ const Form = (props) => {
         </form>
         <section className="appointment__validation">{error}</section>
         <InterviewerList 
-          interviewers={props.interviewers}
+          interviewers={interviewers}
           value={interviewer}
-          onChange={(id) => setInterviewer(id)} 
+          onChange={setInterviewer} 
         />
       </section>
       <section className="appointment__card-right">
