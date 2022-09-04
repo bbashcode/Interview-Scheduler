@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { render, cleanup, waitForElement, fireEvent, prettyDOM, waitForElementToBeRemoved, getAllByTestId, getByPlaceholderText, getByAltText, getByText, queryByText, getByDisplayValue } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, waitForElementToBeRemoved, getAllByTestId, getByPlaceholderText, getByAltText, getByText, queryByText, getByDisplayValue, queryByAltText } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -18,7 +18,7 @@ describe("Application", () => {
   });
 
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
   
     await waitForElement(() => getByText(container, "Archie Cohen"));
   
@@ -48,7 +48,7 @@ describe("Application", () => {
 
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
   
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -74,12 +74,11 @@ describe("Application", () => {
     );
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
 
-    debug();
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
   
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -112,7 +111,6 @@ describe("Application", () => {
   
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
 
-    debug();
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {

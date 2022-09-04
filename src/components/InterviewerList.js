@@ -4,6 +4,7 @@ import InterviewerListItem from './InterviewerListItem';
 import PropTypes from 'prop-types'; 
 
 export default function InterviewerList (props){
+//props do not have anything other than id, and time
   const interviewerArray = props.interviewers.map((interviewer) => {
     return <InterviewerListItem 
       key={interviewer.id}
@@ -11,7 +12,7 @@ export default function InterviewerList (props){
       name={interviewer.name}
       avatar={interviewer.avatar}
       selected={interviewer.id === props.interviewer}
-      setInterviewer={() => {props.setInterviewer(interviewer.id)}}
+      setInterviewer={() => {props.onChange(interviewer.id)}}
     />
   })
 

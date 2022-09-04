@@ -3,6 +3,8 @@ import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
 const Form = (props) => {
+//interview is null still in the props
+
   const{interviewers, onSave, onCancel } = props;
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -11,6 +13,7 @@ const Form = (props) => {
   function reset() {
     setStudent("");
     setInterviewer(null);
+    setError("");
   };
 
  function cancel() {
