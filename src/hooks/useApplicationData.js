@@ -11,6 +11,27 @@ export default function useApplicationData() {
   });
 
   const setDay = (day) => setState({ ...state, day });
+
+  useEffect(() => {
+    const daysURL = `/api/days`;
+    const appointmentsURL = '/api/appointments';
+    const interviewersURL = '/api/interviewers';
+
+    Promise.all([
+      axios.get(daysURL),
+      axios.get(appointmentsURL),
+      axios.get(interviewersURL)
+    ]).then((res) => {
+      setState(prev => ({
+        ...prev,
+        days: res[0].data,
+        appointments: res[1].data,
+        interviewers: res[2].data
+      }));
+    });
+  }, []);
+
+
   const updateSpots = (id, appointments) => {
     const day = state.days.filter(day =>
       day.appointments.includes(id)
@@ -30,24 +51,6 @@ export default function useApplicationData() {
     return days;
   };
 
-  useEffect(() => {
-    const daysURL = `http://localhost:8001/api/days`;
-    const appointmentsURL = 'http://localhost:8001/api/appointments';
-    const interviewersURL = 'http://localhost:8001/api/interviewers';
-
-    Promise.all([
-      axios.get(daysURL),
-      axios.get(appointmentsURL),
-      axios.get(interviewersURL)
-    ]).then((res) => {
-      setState(prev => ({
-        ...prev,
-        days: res[0].data,
-        appointments: res[1].data,
-        interviewers: res[2].data
-      }));
-    });
-  }, []);
 
 
   const bookInterview = (id, interview) => {
@@ -90,5 +93,5 @@ export default function useApplicationData() {
       });
   };
   
-  return { state, setDay, bookInterview, cancelInterview };
+  return { state, setState, setDay, bookInterview, cancelInterview };
 }
